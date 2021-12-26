@@ -23,6 +23,8 @@ struct AddView: View {
             TextField("Memo", text: $memo)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(10)
+            Toggle("Completed", isOn: $completed)
+                .padding(10)
             Button(action: {
                 let temps = loadProducts()
                 
@@ -31,7 +33,7 @@ struct AddView: View {
                     Product(
                         name: name,
                         memo: memo,
-                        completed: false
+                        completed: completed
                     )
                 )
                 for temp in temps {

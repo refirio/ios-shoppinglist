@@ -17,7 +17,14 @@ struct ContentView: View {
                     NavigationLink(destination: EditView(id: product.id).onDisappear(perform: {
                         products = loadProducts()
                     })) {
-                        Text(product.name)
+                        HStack {
+                            if (product.completed) {
+                                Image(systemName: "checkmark.square")
+                            } else {
+                                Image(systemName: "square")
+                            }
+                            Text(product.name)
+                        }
                     }
                 }
                 .onMove(perform: move)
