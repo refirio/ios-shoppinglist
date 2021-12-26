@@ -14,35 +14,41 @@ struct AddView: View {
     @State private var completed = false
 
     var body: some View {
-        Text("商品を追加します。")
-            .padding(10)
-        TextField("商品名", text: $name)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding(10)
-        TextField("メモ", text: $memo)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding(10)
-        Button(action: {
-            let temps = loadProducts()
-            
-            var products: [Product] = []
-            products.append(
-                Product(
-                    name: name,
-                    memo: memo,
-                    completed: false
+        VStack {
+            Text("Add item.")
+                .padding(10)
+            TextField("Name", text: $name)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(10)
+            TextField("Memo", text: $memo)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(10)
+            Button(action: {
+                let temps = loadProducts()
+                
+                var products: [Product] = []
+                products.append(
+                    Product(
+                        name: name,
+                        memo: memo,
+                        completed: false
+                    )
                 )
-            )
-            for temp in temps {
-                products.append(temp)
-            }
-            
-            saveProducts(data: products)
+                for temp in temps {
+                    products.append(temp)
+                }
+                
+                saveProducts(data: products)
 
-            self.presentation.wrappedValue.dismiss()
-        }) {
-            Text("追加")
-        }.padding(10)
+                self.presentation.wrappedValue.dismiss()
+            }) {
+                HStack {
+                    Image(systemName: "checkmark.square")
+                    Text("ADD")
+                }
+            }.padding(10)
+            Spacer()
+        }
     }
 }
 

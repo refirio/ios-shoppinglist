@@ -18,12 +18,12 @@ struct EditView: View {
 
     var body: some View {
         VStack {
-            Text("商品を編集します。")
+            Text("Edit item.")
                 .padding(10)
-            TextField("商品名", text: $name)
+            TextField("Name", text: $name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(10)
-            TextField("メモ", text: $memo)
+            TextField("Memo", text: $memo)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(10)
             Button(action: {
@@ -49,7 +49,10 @@ struct EditView: View {
 
                 self.presentation.wrappedValue.dismiss()
             }) {
-                Text("編集")
+                HStack {
+                    Image(systemName: "checkmark.square")
+                    Text("EDIT")
+                }
             }.padding(10)
             Spacer()
         }

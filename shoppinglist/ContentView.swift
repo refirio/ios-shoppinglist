@@ -23,13 +23,13 @@ struct ContentView: View {
                 .onMove(perform: move)
                 .onDelete(perform: delete)
             }
-            .navigationBarTitle("商品", displayMode: .inline)
+            .navigationBarTitle("SHOPPING", displayMode: .inline)
             .navigationBarItems(trailing:
                 HStack {
                     NavigationLink(destination: AddView().onDisappear(perform: {
                         products = loadProducts()
                     })) {
-                        Text("追加")
+                        Image(systemName: "bag.badge.plus")
                     }
                     MyEditButton()
                 }
@@ -67,9 +67,9 @@ struct MyEditButton: View {
             }
         }) {
             if editMode?.wrappedValue.isEditing == true {
-                Text("完了")
+                Image(systemName: "checkmark.square")
             } else {
-                Text("編集")
+                Image(systemName: "list.bullet")
             }
         }
     }
