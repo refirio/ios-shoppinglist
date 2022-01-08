@@ -18,14 +18,22 @@ struct EditView: View {
 
     var body: some View {
         VStack {
-            Text("Edit item.")
-                .padding(10)
-            TextField("Name", text: $name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(10)
-            TextField("Memo", text: $memo)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(10)
+            VStack {
+                Text("Name")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                TextField("", text: $name)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }.padding(10)
+            VStack {
+                Text("Memo")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                TextEditor(text: $memo)
+                    .frame(width: UIScreen.main.bounds.width * 0.95, height: 100)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 4)
+                            .stroke(Color(red: 0.9, green: 0.9, blue: 0.9), lineWidth: 1)
+                    )
+            }.padding(10)
             Toggle("Completed", isOn: $completed)
                 .padding(10)
             Button(action: {
