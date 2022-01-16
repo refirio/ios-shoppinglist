@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var products: [Product] = []
+    @State private var query = ""
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(products) { product in
+                ForEach(filtered) { product in
                     NavigationLink(destination: EditView(id: product.id).onDisappear(perform: {
                         products = loadProducts()
                     })) {
@@ -30,6 +31,7 @@ struct ContentView: View {
                 .onMove(perform: move)
                 .onDelete(perform: delete)
             }
+            .searchable(text: $query)
             .navigationBarTitle("SHOPPING", displayMode: .inline)
             .navigationBarItems(trailing:
                 HStack {
@@ -44,6 +46,15 @@ struct ContentView: View {
         }
         .onAppear {
             products = loadProducts()
+        }
+    }
+
+    private var filtered: [Product] {
+        guard !query.isEmpty else {
+            return products
+        }
+        return products.filter {
+            $0.name.localizedCaseInsensitiveContains(query)
         }
     }
     
