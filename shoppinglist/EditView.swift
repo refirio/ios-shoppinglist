@@ -66,6 +66,13 @@ struct EditView: View {
             }.padding(10)
             Spacer()
         }
+        .padding(EdgeInsets(
+            top: 15,
+            leading: 0,
+            bottom: 0,
+            trailing: 0
+        ))
+        .navigationBarTitle("", displayMode: .inline)
         .onAppear {
             let products = loadProducts()
             
