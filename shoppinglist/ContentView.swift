@@ -41,7 +41,7 @@ struct ContentView: View {
                 .onDelete(perform: delete)
             }
             .searchable(text: $query)
-            .navigationBarTitle("SHOPPING")
+            .navigationBarTitle("Shopping List")
             .navigationBarItems(trailing:
                 HStack {
                     NavigationLink(destination: AddView().onDisappear(perform: {
