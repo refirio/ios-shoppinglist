@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		032C530A279C330F00ACB0F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		03FE11612765ED1900B7713C /* shoppinglist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shoppinglist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FE11642765ED1900B7713C /* shoppinglistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoppinglistApp.swift; sourceTree = "<group>"; };
 		03FE11662765ED1900B7713C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +101,7 @@
 		03FE11632765ED1900B7713C /* shoppinglist */ = {
 			isa = PBXGroup;
 			children = (
+				032C530A279C330F00ACB0F1 /* Info.plist */,
 				03FE11642765ED1900B7713C /* shoppinglistApp.swift */,
 				03FE11662765ED1900B7713C /* ContentView.swift */,
 				03FE11682765ED1C00B7713C /* Assets.xcassets */,
@@ -434,6 +436,7 @@
 				DEVELOPMENT_TEAM = HEZ8494358;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = shoppinglist/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Shopping List";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -464,6 +467,7 @@
 				DEVELOPMENT_TEAM = HEZ8494358;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = shoppinglist/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Shopping List";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
