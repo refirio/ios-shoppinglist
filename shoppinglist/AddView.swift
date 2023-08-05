@@ -14,25 +14,39 @@ struct AddView: View {
     @State private var completed = false
 
     var body: some View {
-        VStack {
+        Form {
             VStack {
-                Text("Name")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                TextField("", text: $name)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }.padding(10)
-            VStack {
-                Text("Memo")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                TextField("Name", text: $name)
+            }
+            ZStack {
+                if memo.isEmpty {
+                    VStack {
+                        HStack {
+                            Text("Memo")
+                                .padding(EdgeInsets(
+                                    top: 16,
+                                    leading: 0,
+                                    bottom: 0,
+                                    trailing: 0
+                                ))
+                                .opacity(0.25)
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                }
                 TextEditor(text: $memo)
-                    .frame(width: UIScreen.main.bounds.width * 0.95, height: 100)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 4)
-                            .stroke(Color(red: 0.9, green: 0.9, blue: 0.9), lineWidth: 1)
-                    )
-            }.padding(10)
-            Toggle("Completed", isOn: $completed)
-                .padding(10)
+                    .padding(EdgeInsets(
+                        top: 0,
+                        leading: -4,
+                        bottom: 0,
+                        trailing: 0
+                    ))
+                    .frame(height: 200)
+            }
+            VStack {
+                Toggle("Completed", isOn: $completed)
+            }
             Button(action: {
                 let temps = loadProducts()
                 
@@ -53,18 +67,14 @@ struct AddView: View {
                 self.presentation.wrappedValue.dismiss()
             }) {
                 HStack {
+                    Spacer()
                     Image(systemName: "checkmark.square")
                     Text("ADD")
+                    Spacer()
                 }
-            }.padding(10)
-            Spacer()
+            }
         }
-        .padding(EdgeInsets(
-            top: 15,
-            leading: 0,
-            bottom: 0,
-            trailing: 0
-        ))
+        .navigationTitle("ADD")
         .navigationBarTitle("", displayMode: .inline)
     }
 }
