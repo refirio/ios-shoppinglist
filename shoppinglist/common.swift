@@ -26,6 +26,6 @@ func loadProducts() -> [Product] {
     return products
 }
 
-func saveProducts(data articles: [Product]) -> Void {
-    UserDefaults.standard.set(try? PropertyListEncoder().encode(articles), forKey: "products")
+func saveProducts(data products: [Product]) -> Void {
+    UserDefaults.standard.set(try? PropertyListEncoder().encode(products), forKey: "products")
 }
