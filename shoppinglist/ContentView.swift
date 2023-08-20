@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var products: [Product] = []
     @State private var query = ""
-    
+    let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+
     private var filtered: [Product] {
         guard !query.isEmpty else {
             return products
@@ -22,36 +23,43 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(filtered) { product in
-                    NavigationLink(destination: EditView(id: product.id).onDisappear(perform: {
-                        products = loadProducts()
-                    })) {
-                        HStack {
-                            if (product.completed) {
-                                Image(systemName: "checkmark.square")
-                            } else {
-                                Image(systemName: "square")
+            VStack {
+                List {
+                    ForEach(filtered) { product in
+                        NavigationLink(destination: EditView(id: product.id).onDisappear(perform: {
+                            products = loadProducts()
+                        })) {
+                            HStack {
+                                if (product.completed) {
+                                    Image(systemName: "checkmark.square")
+                                } else {
+                                    Image(systemName: "square")
+                                }
+                                Text(product.name)
                             }
-                            Text(product.name)
                         }
                     }
+                    .onMove(perform: move)
+                    .onDelete(perform: delete)
                 }
-                .onMove(perform: move)
-                .onDelete(perform: delete)
-            }
-            .searchable(text: $query)
-            .navigationBarTitle("Shopping List")
-            .navigationBarItems(trailing:
-                HStack {
-                    NavigationLink(destination: AddView().onDisappear(perform: {
-                        products = loadProducts()
-                    })) {
-                        Image(systemName: "bag.badge.plus")
+                .searchable(text: $query)
+                .navigationBarTitle("Shopping List")
+                .navigationBarItems(trailing:
+                    HStack {
+                        NavigationLink(destination: AddView().onDisappear(perform: {
+                            products = loadProducts()
+                        })) {
+                            Image(systemName: "bag.badge.plus")
+                        }
+                        MyEditButton()
                     }
-                    MyEditButton()
+                )
+                HStack {
+                    Spacer()
+                    Text("Ver \(version)")
+                        .padding()
                 }
-            )
+            }
         }
         .onAppear {
             products = loadProducts()
